@@ -21,8 +21,8 @@ architecture:
       - name: PE
         local:
           - name: Buffer             # storage component
-            class: RQueues
- #           subclass: SRAM_MD
+            class: storage
+            subclass: RQueueMerger
             attributes:
               data_storage_depth: 512
               data_storage_width: 8
