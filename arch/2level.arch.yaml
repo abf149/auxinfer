@@ -20,7 +20,7 @@ architecture:
       subtree:                        # architecture level 0
       - name: PE
         local:
-          - name: Buffer                  # storage component
+          - name: RQueues             # storage component
             class: storage
             subclass: SRAM_MD
             attributes:
