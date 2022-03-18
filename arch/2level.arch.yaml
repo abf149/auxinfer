@@ -20,6 +20,33 @@ architecture:
       subtree:                        # architecture level 0
       - name: PE
         local:
+          - name: Fibercache          # storage component
+            class: storage
+            subclass: SRAM_MD
+            attributes:
+              data_storage_depth: 512
+              data_storage_width: 8
+              datawidth: 8
+              block_size: 1
+              metadata_storage_depth: 256
+              metadata_storage_width: 28
+              n_banks: 2
+              metadata_n_banks: 2
+              write_bandwidth: 2
+              read_bandwidth: 2
+
+          - name: AReg
+            class: storage
+            subclass: reg
+            attributes:
+              data_storage_depth: 8
+              data_storage_width: 8
+              datawidth: 8
+              write_bandwidth: 1
+              read_bandwidth: 1
+              metadata_storage_depth: 256
+              metadata_storage_width: 28              
+
           - name: Buffer             # storage component
             class: storage
             subclass: RQueueMerger
@@ -35,7 +62,7 @@ architecture:
               write_bandwidth: 2
               read_bandwidth: 2
 
-          - name: Reg
+          - name: ZReg
             class: storage
             subclass: reg
             attributes:
@@ -44,6 +71,8 @@ architecture:
               datawidth: 8
               write_bandwidth: 1
               read_bandwidth: 1
+              metadata_storage_depth: 256
+              metadata_storage_width: 28                 
           
           - name: MAC                    # compute component
             class: compute
